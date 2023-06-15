@@ -1,0 +1,36 @@
+syntax = "proto3"; // indicates version of protobuf (3.x -> latest)
+
+/*
+    * The service is the interface contract we’ve talked about.
+    * Here you’ll place the method names, params, and return types of each gRPC call.
+*/
+service CustomerService {
+    rpc GetAll (Empty) returns (CustomerList) {}
+    rpc Get (CustomerRequestId) returns (Customer) {}
+    rpc Insert (Customer) returns (Customer) {}
+    rpc Update (Customer) returns (Customer) {}
+    rpc Remove (CustomerRequestId) returns (Empty) {}
+}
+
+message Empty {}
+
+/*
+    * The return types(in service interface) when not a primitive one, must be stated through the message keyword
+    * Each of a message’s properties has to receive a number value that represents the order of this property in the stack, 
+      starting with 1.
+*/
+message Customer {
+    string id = 1;
+    string name = 2;
+    int32 age = 3;
+    string address = 4;
+}
+
+message CustomerList {
+    // Finally, for arrays, you need to use the repeated keyword before the declaration’s property.
+    repeated Customer customers = 1;
+}
+
+message CustomerRequestId {
+    string id = 1;
+}
