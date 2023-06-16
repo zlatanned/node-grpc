@@ -16,7 +16,7 @@ const customersProto = grpc.loadPackageDefinition(packageDefinition);
 
 const server = new grpc.Server();
 
-// Dummy data used instead of DB
+// Dummy data to start with. All modifications to customers to be stored in-memory
 const customers = [
 	{
 		id: "a68b823c-7ca6-44bc-b721-fb4d5312cafc",
